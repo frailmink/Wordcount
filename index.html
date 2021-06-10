@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Page Title</title>
+</head>
+
+<body>
+
+    <h1>This is a Heading</h1>
+    <p>This is a paragraph.</p>
+
+    <label for="string">Sentence:</label>
+    <input type="text" id="string" name="string" onchange="UpdateWordCount()">
+
+    <p>the number of words is <span id="results">0</span></p>
+
+    <script>
+        function UpdateWordCount() {
+            body = { "string": $("#string").val() }
+            $.post("word_count", JSON.stringify(body), function (result) {
+                $("#results").html(result.word_count);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
